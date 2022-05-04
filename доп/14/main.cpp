@@ -63,6 +63,7 @@ int getAverage (Book book) {
     return length / book.counter;
 }
 
+// Создает копию книги с усредненной длиной предложений
 Book convert (Book original, int size) {
     Book book;
     book.counter = original.counter;
