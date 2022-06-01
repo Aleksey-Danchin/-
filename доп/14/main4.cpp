@@ -3,76 +3,74 @@
 using namespace std;
 
 class Book {
-    private:
-        string text = ""; // исходный сырой текст
-        int counter = 0; // количество предложений
-        string* sentences; // массив предложений
+    private: string text = ""; // исходный сырой текст
+    private: int counter = 0; // количество предложений
+    private: string* sentences; // массив предложений
     
-    public:
-        // Устанавливает новый исходный текст
-        void set_text(string next_text) {
-            this->text = next_text;
+    // Устанавливает новый исходный текст
+    public: void set_text(string next_text) {
+        this->text = next_text;
 
-            // Подсчет количества предложений
-            this->counter = 0;
-            for (int i = 0; i < this->text.length(); i++) {
-                if (this->text[i] == '.') {
-                    this->counter += 1;
-                }
-            }
-
-            // Создали массив для book.counter предложений
-            this->sentences = new string[this->counter];
-            int pos = 0;
-            int index = 0;
-
-            for (int i = 0; i < this->text.length(); i++) {
-                if (this->text[i] == '.') {
-                    // Забираем подстроку являющееся предложением
-                    string sentence = this->text.substr(index, i - index + 1);
-                    this->sentences[pos] = sentence;
-
-                    pos += 1;
-                    index = i + 2;
-                }
+        // Подсчет количества предложений
+        this->counter = 0;
+        for (int i = 0; i < this->text.length(); i++) {
+            if (this->text[i] == '.') {
+                this->counter += 1;
             }
         }
 
-         // Возвращет среднюю длину предложений
-        int getAverage () {
-            int length = 0;
+        // Создали массив для book.counter предложений
+        this->sentences = new string[this->counter];
+        int pos = 0;
+        int index = 0;
 
+        for (int i = 0; i < this->text.length(); i++) {
+            if (this->text[i] == '.') {
+                // Забираем подстроку являющееся предложением
+                string sentence = this->text.substr(index, i - index + 1);
+                this->sentences[pos] = sentence;
+
+                pos += 1;
+                index = i + 2;
+            }
+        }
+    }
+
+        // Возвращет среднюю длину предложений
+    public: int getAverage () {
+        int length = 0;
+
+        for (int i = 0; i < this->counter; i++) {
+            length += this->sentences[i].length();
+        }
+        
+        return length / this->counter;
+    }
+
+        // Усредним предложения
+    public: void convert (int size) {
+        for (int i = 0; i < this->counter; i++) {
+            string sentence = this->sentences[i];
+
+            if (sentence.length() > size) {
+                sentence = sentence.substr(0, size);
+            } else {
+                while (sentence.length() < size) {
+                    sentence += '_';
+                }
+            }
+
+            this->sentences[i] = sentence;
+        }
+    }
+
+    // Печатает книгу по предложениям
+    public: void print () {
             for (int i = 0; i < this->counter; i++) {
-                length += this->sentences[i].length();
-            }
-            
-            return length / this->counter;
+            string sentence = this->sentences[i];
+            cout << sentence << endl;
         }
-
-         // Усредним предложения
-        void convert (int size) {
-            for (int i = 0; i < this->counter; i++) {
-                string sentence = this->sentences[i];
-
-                if (sentence.length() > size) {
-                    sentence = sentence.substr(0, size);
-                } else {
-                    while (sentence.length() < size) {
-                        sentence += '_';
-                    }
-                }
-
-                this->sentences[i] = sentence;
-            }
-        }
-
-        // Печатает книгу по предложениям
-        void print () {
-             for (int i = 0; i < this->counter; i++) {
-                string sentence = this->sentences[i];
-                cout << sentence << endl;
-            }
-        }
+    }
 };
 
 int main () {
