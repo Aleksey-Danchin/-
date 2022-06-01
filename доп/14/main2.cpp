@@ -10,6 +10,11 @@ class Book {
     public: string* sentences; // массив предложений
     public: int counter = 0; // количество предложений
 
+    Book (string arg) {
+        path = arg;
+        read();
+    }
+
     // Считываем файл
     void read () {
         ifstream file;
@@ -76,39 +81,27 @@ class Book {
 };
 
 int main () {
-    Book b1; // объект класса Book (переменная типа Book)
-    b1.path = "./book1.txt";
-    b1.read();
+    Book books[3] = {
+        Book("./book1.txt"),
+        Book("./book2.txt"),
+        Book("./book3.txt"),
+    };
 
-    Book b2;
-    b2.path = "./book2.txt";
-    b2.read();
+    int average = 0;
+    Book* book;
 
-    Book b3;
-    b3.path = "./book3.txt";
-    b3.read();
-
-    Book b = b1;
-    int average = b1.getAverage();
-
-    if (b2.getAverage() > average) {
-        b = b2;
-        average = b2.getAverage();
+    for (int i = 0; i < 3; i++) {
+        int bookAverage = books[i].getAverage();
+        if (bookAverage > average) {
+            average = bookAverage;
+            book = &books[i];
+        }
     }
 
-    if (b3.getAverage() > average) {
-        b = b3;
-        average = b3.getAverage();
-    }
+    cout << endl <<average << endl << endl;
 
-    for (int i = 0; i < b.counter; i++) {
-        cout << b.sentences[i] << endl;
-    }
-
-    cout << endl << b.getAverage() << endl << endl;
-
-    b.convert(b.getAverage());
-    for (int i = 0; i < b.counter; i++) {
-        cout << b.sentences[i] << endl;
+    book->convert(average);
+    for (int i = 0; i < book->counter; i++) {
+        cout << book->sentences[i] << endl;
     }
 }
