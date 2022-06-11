@@ -67,7 +67,7 @@ class Book {
 
     // Печатает книгу по предложениям
     public: void print () {
-            for (int i = 0; i < this->counter; i++) {
+        for (int i = 0; i < this->counter; i++) {
             string sentence = this->sentences[i];
             cout << sentence << endl;
         }
