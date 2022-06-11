@@ -50,6 +50,20 @@ Book::Book () {
     }
 };
 
+// Деструктор
+Book::~Book () {
+    // исходный сырой текст
+    text = "";
+
+    // количество предложений
+    counter = 0;
+
+    // массив предложений
+    delete[] sentences;
+
+    cout << "Book descructor fired. All cleaned." << endl;
+}
+
 // Возвращет среднюю длину предложений
 int Book::getAverage () {
     int length = 0;
