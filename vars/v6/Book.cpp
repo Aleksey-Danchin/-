@@ -20,7 +20,7 @@ int Book::average (int next_average) {
 }
 
 // Устанавливает новый исходный текст
-Book::Book (string text) {
+Book::Book (string text = "") {
     this->text = text;
 
     // Подсчет количества предложений
@@ -76,14 +76,6 @@ void Book::convert () {
     }
 }
 
-// Печатает книгу по предложениям
-void Book::print () {
-        for (int i = 0; i < this->counter; i++) {
-        string sentence = this->sentences[i];
-        cout << sentence << endl;
-    }
-}
-
 Book operator + (Book b1, Book b2) {
     return Book(b1.text + " " + b2.text);
 }
@@ -110,6 +102,28 @@ Book operator * (Book b1, Book b2) {
     }
 
     return Book(text);
+}
+
+ostream& operator << (ostream &out, Book &b) {
+    for (int i = 0; i < b.counter; i++) {
+        string sentence = b.sentences[i];
+        out << sentence << endl;
+    }
+
+    return out;
+}
+
+istream& operator >> (istream& in, Book &b) {
+    string text;
+    getline(in, text);
+
+    Book book(text);
+
+    b.text = book.text;
+    b.counter = book.counter;
+    b.sentences = book.sentences;
+
+    return in;
 }
 
 #endif

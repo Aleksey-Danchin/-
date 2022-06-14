@@ -28,11 +28,8 @@ class Book {
     // Возвращет среднюю длину предложений
     public: int getAverage ();
 
-        // Усредним предложения
+    // Усредним предложения
     public: void convert ();
-
-    // Печатает книгу по предложениям
-    public: void print ();
 };
 
 #endif

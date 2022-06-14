@@ -4,19 +4,30 @@
 using namespace std;
 
 int main () {
-    Book a = Book("Hello. How are you.");
-    Book b = Book("What is you name. I am Max.");
-    Book c = Book("Ok. You win.");
+    // "Hello. How are you.";
+    Book a;
+    cout << "Enter a book: ";
+    cin >> a;
+
+    // "What is you name. I am Max.";
+    Book b;
+    cout << "Enter b book: ";
+    cin >> b;
+
+    // "Ok. You win.";
+    Book c;
+    cout << "Enter c book: ";
+    cin >> c;
 
     Book b1 = a + b;
     Book b2 = a * c;
 
-    cout << b1.text << endl;
-    cout << b2.text << endl;
+    cout << b1 << endl;
+    cout << b2 << endl;
 
     Book x = a + b * c;
     Book y = (a + b) * c;
 
-    cout << x.text << endl;
-    cout << y.text << endl;
+    cout << x << endl;
+    cout << y << endl;
 }
