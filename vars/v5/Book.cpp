@@ -15,7 +15,7 @@ int Book::average () {
 }
 
 int Book::average (int next_average) {
-    Book:AVERAGE = next_average;
+    Book::AVERAGE = next_average;
     return next_average;
 }
 
