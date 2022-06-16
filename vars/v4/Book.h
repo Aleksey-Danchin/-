@@ -33,8 +33,6 @@ class Book {
 
     // Печатает книгу по предложениям
     public: void print ();
-
-  
 };
 
 #endif

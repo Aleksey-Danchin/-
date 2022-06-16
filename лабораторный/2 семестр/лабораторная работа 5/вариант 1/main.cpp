@@ -43,8 +43,7 @@ ostream& operator << (ostream &out, Point p) {
     return out;
 }
 
-istream& operator >>  (istream &in, Point& p)
-{
+istream& operator >>  (istream &in, Point& p) {
     cout << "x: ";
     in >> p.x;
 

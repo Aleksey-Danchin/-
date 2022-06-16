@@ -53,10 +53,10 @@ Book::Book () {
 // Деструктор
 Book::~Book () {
     // исходный сырой текст
-    text = "";
+    this->text = "";
 
     // количество предложений
-    counter = 0;
+    this->counter = 0;
 
     // массив предложений
     delete[] sentences;
